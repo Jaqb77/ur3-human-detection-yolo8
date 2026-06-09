@@ -1,22 +1,22 @@
 import cv2
 from ultralytics import YOLO
-import rtde_io
+# import rtde_io  # Komentarz: Nie importujemy biblioteki robota w trybie offline
 
 def run_camera_robot_test():
-    window_name = 'Podglad Kamery + YOLOv8 Pose + RTDE'
+    window_name = 'Podglad Kamery + YOLOv8 Pose (TRYB OFFLINE)'
     model = YOLO('yolov8n-pose.pt')
-    cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
+    cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
 
     # Inicjalizacja połączenia RTDE z symulatorem URSim
-    robot_ip = "192.168.68.116" 
+    # robot_ip = "192.168.68.116" 
     
-    try:
-        rtde_io_interface = rtde_io.RTDEIOInterface(robot_ip)
-        print("Połączono z robotem przez RTDE IO.")
-    except Exception as e:
-        print(f"Błąd połączenia z robotem: {e}")
-        cap.release()
-        return
+    # try:
+    #     rtde_io_interface = rtde_io.RTDEIOInterface(robot_ip)
+    #     print("Połączono z robotem przez RTDE IO.")
+    # except Exception as e:
+    #     print(f"Błąd połączenia z robotem: {e}")
+    #     cap.release()
+    #     return
 
     if not cap.isOpened():
         return
@@ -43,11 +43,11 @@ def run_camera_robot_test():
             status_color = (0, 255, 0)
 
         # Właściwy zapis prędkości do robota przez interfejs IO
-        try:
-            rtde_io_interface.setSpeedSlider(slider_value)
-        except Exception as e:
-            print(f"Błąd zapisu do RTDE: {e}")
-            break
+        # try:
+        #     rtde_io_interface.setSpeedSlider(slider_value)
+        # except Exception as e:
+        #     print(f"Błąd zapisu do RTDE: {e}")
+        #     break
 
         # Wypisanie statusu bezpieczeństwa na ekranie (HUD)
         cv2.putText(annotated_frame, status_txt, (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, status_color, 2, cv2.LINE_AA)
@@ -61,10 +61,10 @@ def run_camera_robot_test():
             break
 
     # Bezpieczne przywrócenie prędkości nominalnej i zakończenie pracy kamery
-    try:
-        rtde_io_interface.setSpeedSlider(1.0)
-    except:
-        pass
+    # try:
+    #     rtde_io_interface.setSpeedSlider(1.0)
+    # except:
+    #     pass
 
     cap.release()
     cv2.destroyAllWindows()
