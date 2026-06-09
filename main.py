@@ -7,7 +7,7 @@ def run_camera_robot_test():
     model = YOLO('yolov8n-pose.pt')
     cap = cv2.VideoCapture(1, cv2.CAP_DSHOW)
 
-    # Inicjalizacja połączenia RTDE z symulatorem URSim
+    # Init RTDE z  URSim
     robot_ip = "192.168.68.116" 
     
     try:
@@ -30,7 +30,6 @@ def run_camera_robot_test():
         results = model(frame, verbose=False)
         annotated_frame = results[0].plot()
 
-        # Sprawdzenie czy model wykrył przynajmniej jedną osobę
         widze_czlowieka = len(results[0].keypoints) > 0
 
         if widze_czlowieka:
@@ -42,14 +41,12 @@ def run_camera_robot_test():
             status_txt = "Status: Predkosc nominalna (100%)"
             status_color = (0, 255, 0)
 
-        # Właściwy zapis prędkości do robota przez interfejs IO
         try:
             rtde_io_interface.setSpeedSlider(slider_value)
         except Exception as e:
             print(f"Błąd zapisu do RTDE: {e}")
             break
 
-        # Wypisanie statusu bezpieczeństwa na ekranie (HUD)
         cv2.putText(annotated_frame, status_txt, (30, 50), cv2.FONT_HERSHEY_SIMPLEX, 1, status_color, 2, cv2.LINE_AA)
 
         cv2.imshow(window_name, annotated_frame)
@@ -60,7 +57,6 @@ def run_camera_robot_test():
         if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
-    # Bezpieczne przywrócenie prędkości nominalnej i zakończenie pracy kamery
     try:
         rtde_io_interface.setSpeedSlider(1.0)
     except:
