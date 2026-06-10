@@ -1,15 +1,10 @@
 import cv2
 from ultralytics import YOLO
-from db.event_logger import excel_logger
 
 def run_camera_robot_test():
     window_name = 'Podglad Kamery + YOLOv8 Pose (TRYB OFFLINE)'
     model = YOLO('yolov8n-pose.pt')
     cap = cv2.VideoCapture(0, cv2.CAP_DSHOW)
-
-    logger = excel_logger()
-    file_name = "logs_detection_ur3.xlsx"
-    logger.init_check(file_name)
 
     if not cap.isOpened():
         return
@@ -23,7 +18,6 @@ def run_camera_robot_test():
         results = model(frame, verbose=False)
         annotated_frame = results[0].plot()
 
-        # Sprawdzenie czy model wykrył przynajmniej jedną osobę
         widze_czlowieka = len(results[0].keypoints) > 0
 
         if widze_czlowieka:
