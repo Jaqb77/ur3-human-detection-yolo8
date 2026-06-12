@@ -5,6 +5,7 @@ from openpyxl import Workbook
 from openpyxl.reader.excel import load_workbook
 from openpyxl.styles import Font, Alignment
 from openpyxl.utils import get_column_letter
+import cv2  # Dodano do obsługi zapisu zdjęć
 
 class excel_logger:
     
@@ -27,6 +28,8 @@ class excel_logger:
         ]
 
         self.buffer = []
+        self.image_buffer = {}          # Bufor przechowujący zdjęcia przypisane do ID detekcji
+        self.detection_frame = None     # Klatka referencyjna z początku detekcji
 
         self.is_active = False          
         self.start_time = 0.0           
@@ -36,8 +39,17 @@ class excel_logger:
         self.session_accuracies = []    
         self.session_fps = []           
         self.session_inference_times = [] 
+        
+        self.db_dir = os.path.dirname(os.path.abspath(__file__))
+
+    def _get_absolute_path(self, filename):
+        if not os.path.isabs(filename) and os.path.basename(filename) == filename:
+            return os.path.join(self.db_dir, filename)
+        return filename
 
     def init_check(self, filename):
+        filename = self._get_absolute_path(filename)
+        
         if os.path.exists(filename):
             wb = load_workbook(filename)
             ws = wb.active
@@ -64,6 +76,7 @@ class excel_logger:
         if not self.buffer:
             return
         
+        filename = self._get_absolute_path(filename)
         wb = load_workbook(filename)
         ws = wb.active
 
@@ -72,6 +85,7 @@ class excel_logger:
             
         self._apply_formatting(ws)
             
+        final_excel_path = filename
         try:
             wb.save(filename)   
             print(f"Pomyślnie zapisano dane do głównego pliku: {filename}")
@@ -79,13 +93,29 @@ class excel_logger:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             base, ext = os.path.splitext(filename)
             backup_filename = f"{base}_BACKUP_{timestamp}{ext}"
+            final_excel_path = backup_filename
             
-            print(f"\n[ALERT] Plik {filename} jest otwarty w innym programie!")
+            print(f"\n[ALERT] Plik {os.path.basename(filename)} jest otwarty w innym programie!")
             print(f"[ZABEZPIECZENIE] Dane zostały uratowane i zapisane w: {backup_filename}\n")
             
             wb.save(backup_filename)
             
+        if self.image_buffer:
+            base_dir = os.path.dirname(final_excel_path)
+            folder_name, _ = os.path.splitext(os.path.basename(final_excel_path))
+            target_folder = os.path.join(base_dir, folder_name)
+            
+            os.makedirs(target_folder, exist_ok=True)
+            
+            for det_id, (frame, safe_timestamp) in self.image_buffer.items():
+                img_filename = f"{det_id} {safe_timestamp}.jpg"
+                img_path = os.path.join(target_folder, img_filename)
+                cv2.imwrite(img_path, frame)
+                
+            print(f"Pomyślnie zapisano {len(self.image_buffer)} zdjęć w folderze: {target_folder}")
+
         self.buffer.clear()
+        self.image_buffer.clear()
         
     def _apply_formatting(self, ws):
         font_naglowek = Font(name="Calibri", size=11, bold=True)
@@ -108,12 +138,14 @@ class excel_logger:
                     max_len = max(max_len, len(str(cell.value)))
             ws.column_dimensions[col_letter].width = max(max_len + 4, 12)
     
-    def acquisition(self, detection_bool, camera_id, current_acc, model_name, hardware_setup, current_fps, current_inf_time, robot_x, robot_y, robot_z):
+    def acquisition(self, detection_bool, camera_id, current_acc, model_name, hardware_setup, current_fps, current_inf_time, robot_x, robot_y, robot_z, frame=None):
 
         if detection_bool and not self.is_active:
             self.is_active = True
             self.start_timestamp_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self.start_time = time.time()
+            if frame is not None:
+                self.detection_frame = frame.copy() 
             self.session_accuracies.append(current_acc)
             self.session_fps.append(current_fps)
             self.session_inference_times.append(current_inf_time)
@@ -136,6 +168,10 @@ class excel_logger:
             else:
                 status = "detection"
 
+                if self.detection_frame is not None:
+                    safe_timestamp = self.start_timestamp_str.replace(":", "-")
+                    self.image_buffer[self.next_id] = (self.detection_frame, safe_timestamp)
+
             row = [
                 self.next_id,
                 camera_id,
@@ -157,6 +193,7 @@ class excel_logger:
             self.next_id += 1
             
             self.is_active = False
+            self.detection_frame = None 
             self.session_accuracies.clear()
             self.session_fps.clear()
             self.session_inference_times.clear()
