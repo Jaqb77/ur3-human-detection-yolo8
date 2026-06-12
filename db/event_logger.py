@@ -14,6 +14,7 @@ class excel_logger:
             "id_camera",
             "status",
             "ai_model",
+            "hardware_setup",
             "detection_start_time",
             "detection_end_time",
             "duration_s",
@@ -71,7 +72,19 @@ class excel_logger:
             
         self._apply_formatting(ws)
             
-        wb.save(filename)   
+        try:
+            wb.save(filename)   
+            print(f"Pomyślnie zapisano dane do głównego pliku: {filename}")
+        except PermissionError:
+            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+            base, ext = os.path.splitext(filename)
+            backup_filename = f"{base}_BACKUP_{timestamp}{ext}"
+            
+            print(f"\n[ALERT] Plik {filename} jest otwarty w innym programie!")
+            print(f"[ZABEZPIECZENIE] Dane zostały uratowane i zapisane w: {backup_filename}\n")
+            
+            wb.save(backup_filename)
+            
         self.buffer.clear()
         
     def _apply_formatting(self, ws):
@@ -95,7 +108,7 @@ class excel_logger:
                     max_len = max(max_len, len(str(cell.value)))
             ws.column_dimensions[col_letter].width = max(max_len + 4, 12)
     
-    def acquisition(self, detection_bool, current_acc, current_fps, current_inf_time, robot_x, robot_y, robot_z, camera_id, model_name):
+    def acquisition(self, detection_bool, camera_id, current_acc, model_name, hardware_setup, current_fps, current_inf_time, robot_x, robot_y, robot_z):
 
         if detection_bool and not self.is_active:
             self.is_active = True
@@ -128,6 +141,7 @@ class excel_logger:
                 camera_id,
                 status,
                 model_name,
+                hardware_setup,
                 self.start_timestamp_str,
                 end_timestamp_str,
                 round(duration_s, 2),
