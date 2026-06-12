@@ -1,3 +1,6 @@
 ﻿venv/
 *.pt
 .env
+*.jpg
+
+db/logs_detection_ur3*/
