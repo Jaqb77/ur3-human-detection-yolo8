@@ -52,7 +52,7 @@ def run_camera_robot_test():
         current_fps = 1.0 / time_diff if time_diff > 0 else 30.0
         prev_time = current_time
 
-        results = model(frame, verbose=False)
+        results = model(frame, verbose=False, device=0)
         annotated_frame = results[0].plot()
 
         widze_czlowieka = len(results[0].keypoints) > 0
