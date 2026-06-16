@@ -12,13 +12,19 @@ if TRYB_ONLINE and not IP_ROBOTA:
     )
 
 MODEL_PATH_NAME = 'yolov8n-pose.pt'
-CAMERA_INDEX = 1  
+CAMERA_INDEX = 0  
 HARDWARE_SETUP_STR = "cobot" if TRYB_ONLINE else "no cobot"
 WINDOW_NAME = '(TRYB ONLINE)' if TRYB_ONLINE else '(TRYB OFFLINE)'
 
 LOG_FILE_NAME = "logs_detection_ur3.xlsx"
-CAMERA_ID = 1  
+CAMERA_ID = 0  
 
 PREDKOSC_NOMINALNA = 1.0  
 PREDKOSC_ZREDUKOWANA = 0.3  
 MIN_DETECTION_TIME_S = 0.5 
+
+# --- ZMIENNE DO MYSQL ---
+DB_HOST = os.getenv("DB_HOST", "localhost")
+DB_USER = os.getenv("DB_USER", "root")
+DB_PASSWORD = os.getenv("DB_PASSWORD", "")
+DB_NAME = os.getenv("DB_NAME", "robot_safety")

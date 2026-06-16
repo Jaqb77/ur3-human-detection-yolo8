@@ -3,6 +3,7 @@ import time
 from datetime import datetime
 from ultralytics import YOLO
 from db.event_logger import excel_logger  
+from db.mysql_logger import mysql_logger 
 import config
 
 if config.TRYB_ONLINE:
@@ -33,17 +34,19 @@ def run_camera_robot_test():
     else:
         print("Skrypt uruchomiony w trybie offline.")
 
-    logger = excel_logger()
-    logger.init_check(config.LOG_FILE_NAME)
+    # --- INICJALIZACJA OBU LOGGERÓW ---
+    logger_excel = excel_logger()
+    logger_excel.init_check(config.LOG_FILE_NAME)
+    
+    logger_mysql = mysql_logger()
+    logger_mysql.init_check()
     
     prev_time = time.time()
     czy_byl_czlowiek = False
- 
     detection_start_timer = None
 
     while True:
         ret, frame = cap.read()
-
         if not ret:
             break
 
@@ -56,7 +59,6 @@ def run_camera_robot_test():
         annotated_frame = results[0].plot()
 
         widze_czlowieka = len(results[0].keypoints) > 0
-
         current_acc = 0.0
         slider_value = config.PREDKOSC_NOMINALNA
 
@@ -64,7 +66,6 @@ def run_camera_robot_test():
             if len(results[0].boxes) > 0:
                 current_acc = float(results[0].boxes.conf[0].item())
             
-
             if detection_start_timer is None:
                 detection_start_timer = current_time
             
@@ -109,19 +110,19 @@ def run_camera_robot_test():
             robot_z = 0.0
             slider_percent = int(slider_value * 100)
 
+        # --- AKWIZYCJA W OBU CENTRALACH LOGOWANIA ---
+        logger_excel.acquisition(
+            detection_bool=widze_czlowieka, camera_id=config.CAMERA_ID, current_acc=current_acc,
+            model_name=config.MODEL_PATH_NAME, hardware_setup=config.HARDWARE_SETUP_STR,
+            current_fps=current_fps, current_inf_time=current_inf_time,
+            robot_x=robot_x, robot_y=robot_y, robot_z=robot_z, frame=annotated_frame
+        )
 
-        logger.acquisition(
-            detection_bool=widze_czlowieka,
-            camera_id=config.CAMERA_ID,
-            current_acc=current_acc,
-            model_name=config.MODEL_PATH_NAME,
-            hardware_setup=config.HARDWARE_SETUP_STR,
-            current_fps=current_fps,
-            current_inf_time=current_inf_time,
-            robot_x=robot_x,
-            robot_y=robot_y,
-            robot_z=robot_z,
-            frame=annotated_frame
+        logger_mysql.acquisition(
+            detection_bool=widze_czlowieka, camera_id=config.CAMERA_ID, current_acc=current_acc,
+            model_name=config.MODEL_PATH_NAME, hardware_setup=config.HARDWARE_SETUP_STR,
+            current_fps=current_fps, current_inf_time=current_inf_time,
+            robot_x=robot_x, robot_y=robot_y, robot_z=robot_z
         )
 
         height, width, _ = annotated_frame.shape
@@ -130,23 +131,21 @@ def run_camera_robot_test():
         time_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         fps_str = f"FPS: {round(current_fps, 1)}"
         speed_str = f"Robot Speed: {slider_percent}%"
-        
         hud_text = f"{time_str}  |  {fps_str}  |  {speed_str}"
 
         cv2.putText(annotated_frame, hud_text, (15, 26), cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 255), 1, cv2.LINE_AA)
-
         cv2.imshow(config.WINDOW_NAME, annotated_frame)
 
         key = cv2.waitKey(1) & 0xFF
-
         if cv2.getWindowProperty(config.WINDOW_NAME, cv2.WND_PROP_VISIBLE) < 1:
             break
-
         if key == ord('q') or key == ord('Q'):
             break
 
-    print("Zamykanie programu. Zapisywanie zebranego bufora do Excela...")
-    logger.save_buffer(config.LOG_FILE_NAME)
+    # --- ZAMKNIĘCIE I ZAPIS SYSTEMÓW ---
+    print("Zamykanie programu. Zapisywanie bufora Excel...")
+    logger_excel.save_buffer(config.LOG_FILE_NAME)
+    logger_mysql.close_connection()
 
     if config.TRYB_ONLINE and rtde_io_interface is not None:
         try:

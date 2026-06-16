@@ -5,7 +5,8 @@ from openpyxl import Workbook
 from openpyxl.reader.excel import load_workbook
 from openpyxl.styles import Font, Alignment
 from openpyxl.utils import get_column_letter
-import cv2  # Dodano do obsługi zapisu zdjęć
+import cv2  
+import pickle  
 
 class excel_logger:
     
@@ -28,8 +29,8 @@ class excel_logger:
         ]
 
         self.buffer = []
-        self.image_buffer = {}          # Bufor przechowujący zdjęcia przypisane do ID detekcji
-        self.detection_frame = None     # Klatka referencyjna z początku detekcji
+        self.image_buffer = {}          
+        self.detection_frame = None     
 
         self.is_active = False          
         self.start_time = 0.0           
@@ -49,7 +50,46 @@ class excel_logger:
 
     def init_check(self, filename):
         filename = self._get_absolute_path(filename)
+        cache_path = filename + ".cache"
         
+        if os.path.exists(cache_path):
+            try:
+                with open(cache_path, 'rb') as f:
+                    cached_data = pickle.load(f)
+                
+                if os.path.exists(filename):
+                    wb = load_workbook(filename)
+                    ws = wb.active
+                else:
+                    wb = Workbook()
+                    ws = wb.active
+                    ws.title = "datalogs"
+                    ws.append(self.headers)
+                    self._apply_formatting(ws)
+
+                for row in cached_data['buffer']:
+                    ws.append(row)
+                    
+                self._apply_formatting(ws)
+                wb.save(filename)
+                
+                if cached_data['image_buffer']:
+                    base_dir = os.path.dirname(filename)
+                    folder_name, _ = os.path.splitext(os.path.basename(filename))
+                    target_folder = os.path.join(base_dir, folder_name)
+                    os.makedirs(target_folder, exist_ok=True)
+                    for det_id, (frame, safe_timestamp) in cached_data['image_buffer'].items():
+                        img_filename = f"{det_id} {safe_timestamp}.jpg"
+                        img_path = os.path.join(target_folder, img_filename)
+                        cv2.imwrite(img_path, frame)
+                
+                os.remove(cache_path)
+                print("[Excel] Pomyślnie przywrócono i zapisano zaległe dane z pliku cache.")
+            except PermissionError:
+                print("\n[Excel][WARNING] Główny plik Excel jest nadal otwarty. Dane z poprzedniej sesji pozostają zabezpieczone w pliku cache.\n")
+            except Exception as e:
+                print(f"[Excel][ERROR] Nie udało się odzyskać danych z pliku cache: {e}")
+
         if os.path.exists(filename):
             wb = load_workbook(filename)
             ws = wb.active
@@ -65,9 +105,19 @@ class excel_logger:
             ws.title = "datalogs"
             ws.append(self.headers)
             self._apply_formatting(ws)
-
             wb.save(filename)
             self.next_id = 1
+
+        if os.path.exists(cache_path):
+            try:
+                with open(cache_path, 'rb') as f:
+                    cached_data = pickle.load(f)
+                if cached_data['buffer']:
+                    last_cached_id = cached_data['buffer'][-1][0]
+                    if last_cached_id >= self.next_id:
+                        self.next_id = last_cached_id + 1
+            except:
+                pass
 
     def add_to_buffer(self, row):
         self.buffer.append(row)
@@ -77,45 +127,58 @@ class excel_logger:
             return
         
         filename = self._get_absolute_path(filename)
-        wb = load_workbook(filename)
-        ws = wb.active
-
-        for row in self.buffer:
-            ws.append(row)
-            
-        self._apply_formatting(ws)
-            
-        final_excel_path = filename
+        cache_path = filename + ".cache"
+        
         try:
+            wb = load_workbook(filename)
+            ws = wb.active
+
+            for row in self.buffer:
+                ws.append(row)
+                
+            self._apply_formatting(ws)
             wb.save(filename)   
             print(f"Pomyślnie zapisano dane do głównego pliku: {filename}")
-        except PermissionError:
-            timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            base, ext = os.path.splitext(filename)
-            backup_filename = f"{base}_BACKUP_{timestamp}{ext}"
-            final_excel_path = backup_filename
             
-            print(f"\n[ALERT] Plik {os.path.basename(filename)} jest otwarty w innym programie!")
-            print(f"[ZABEZPIECZENIE] Dane zostały uratowane i zapisane w: {backup_filename}\n")
-            
-            wb.save(backup_filename)
-            
-        if self.image_buffer:
-            base_dir = os.path.dirname(final_excel_path)
-            folder_name, _ = os.path.splitext(os.path.basename(final_excel_path))
-            target_folder = os.path.join(base_dir, folder_name)
-            
-            os.makedirs(target_folder, exist_ok=True)
-            
-            for det_id, (frame, safe_timestamp) in self.image_buffer.items():
-                img_filename = f"{det_id} {safe_timestamp}.jpg"
-                img_path = os.path.join(target_folder, img_filename)
-                cv2.imwrite(img_path, frame)
+            if self.image_buffer:
+                base_dir = os.path.dirname(filename)
+                folder_name, _ = os.path.splitext(os.path.basename(filename))
+                target_folder = os.path.join(base_dir, folder_name)
                 
-            print(f"Pomyślnie zapisano {len(self.image_buffer)} zdjęć w folderze: {target_folder}")
+                os.makedirs(target_folder, exist_ok=True)
+                
+                for det_id, (frame, safe_timestamp) in self.image_buffer.items():
+                    img_filename = f"{det_id} {safe_timestamp}.jpg"
+                    img_path = os.path.join(target_folder, img_filename)
+                    cv2.imwrite(img_path, frame)
+                    
+                print(f"Pomyślnie zapisano {len(self.image_buffer)} zdjęć w folderze: {target_folder}")
 
-        self.buffer.clear()
-        self.image_buffer.clear()
+            self.buffer.clear()
+            self.image_buffer.clear()
+
+        except PermissionError:
+            print(f"\n[ALERT] Zapis zablokowany. Plik {os.path.basename(filename)} jest otwarty w innym programie!")
+            print(f"[ZABEZPIECZENIE] Dane zostały przeniesione do pliku cache. Zostaną scalone przy kolejnym uruchomieniu.\n")
+            
+            try:
+                existing_buffer = []
+                existing_images = {}
+                
+                if os.path.exists(cache_path):
+                    with open(cache_path, 'rb') as f:
+                        old_cache = pickle.load(f)
+                        existing_buffer = old_cache.get('buffer', [])
+                        existing_images = old_cache.get('image_buffer', {})
+                
+                combined_buffer = existing_buffer + self.buffer
+                existing_images.update(self.image_buffer)
+                
+                with open(cache_path, 'wb') as f:
+                    pickle.dump({'buffer': combined_buffer, 'image_buffer': existing_images}, f)
+                    
+            except Exception as e:
+                print(f"[Cache][ERROR] Błąd zapisu awaryjnego do pliku cache: {e}")
         
     def _apply_formatting(self, ws):
         font_naglowek = Font(name="Calibri", size=11, bold=True)
@@ -168,9 +231,9 @@ class excel_logger:
             else:
                 status = "detection"
 
-                if self.detection_frame is not None:
-                    safe_timestamp = self.start_timestamp_str.replace(":", "-")
-                    self.image_buffer[self.next_id] = (self.detection_frame, safe_timestamp)
+            if self.detection_frame is not None:
+                safe_timestamp = self.start_timestamp_str.replace(":", "-")
+                self.image_buffer[self.next_id] = (self.detection_frame, safe_timestamp)
 
             row = [
                 self.next_id,
