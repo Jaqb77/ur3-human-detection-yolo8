@@ -6,6 +6,7 @@ from db.event_logger import excel_logger
 from db.mysql_logger import mysql_logger 
 import config
 
+
 if config.TRYB_ONLINE:
     import rtde_io
     import rtde_receive
@@ -40,7 +41,7 @@ def run_camera_robot_test():
     
     logger_mysql = mysql_logger()
     logger_mysql.init_check()
-    
+
     prev_time = time.time()
     czy_byl_czlowiek = False
     detection_start_timer = None
@@ -112,18 +113,32 @@ def run_camera_robot_test():
 
         # --- AKWIZYCJA W OBU CENTRALACH LOGOWANIA ---
         logger_excel.acquisition(
-            detection_bool=widze_czlowieka, camera_id=config.CAMERA_ID, current_acc=current_acc,
-            model_name=config.MODEL_PATH_NAME, hardware_setup=config.HARDWARE_SETUP_STR,
-            current_fps=current_fps, current_inf_time=current_inf_time,
-            robot_x=robot_x, robot_y=robot_y, robot_z=robot_z, frame=annotated_frame
+            detection_bool=widze_czlowieka,
+            camera_id=config.CAMERA_ID, 
+            current_acc=current_acc,
+            model_name=config.MODEL_PATH_NAME, 
+            hardware_setup=config.HARDWARE_SETUP_STR,
+            current_fps=current_fps, 
+            current_inf_time=current_inf_time,
+            robot_x=robot_x, 
+            robot_y=robot_y, 
+            robot_z=robot_z, 
+            frame=annotated_frame
         )
 
         logger_mysql.acquisition(
-            detection_bool=widze_czlowieka, camera_id=config.CAMERA_ID, current_acc=current_acc,
-            model_name=config.MODEL_PATH_NAME, hardware_setup=config.HARDWARE_SETUP_STR,
-            current_fps=current_fps, current_inf_time=current_inf_time,
-            robot_x=robot_x, robot_y=robot_y, robot_z=robot_z
+            detection_bool=widze_czlowieka, 
+            camera_id=config.CAMERA_ID, 
+            current_acc=current_acc,
+            model_name=config.MODEL_PATH_NAME, 
+            hardware_setup=config.HARDWARE_SETUP_STR,
+            current_fps=current_fps, 
+            current_inf_time=current_inf_time,
+            robot_x=robot_x, 
+            robot_y=robot_y, 
+            robot_z=robot_z
         )
+
 
         height, width, _ = annotated_frame.shape
         cv2.rectangle(annotated_frame, (0, 0), (width, 40), (0, 0, 0), -1)
