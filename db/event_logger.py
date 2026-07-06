@@ -15,6 +15,7 @@ class excel_logger:
             "id_detection",
             "id_camera",
             "status",
+            "violated_zone",
             "ai_model",
             "hardware_setup",
             "detection_start_time",
@@ -40,6 +41,9 @@ class excel_logger:
         self.session_accuracies = []    
         self.session_fps = []           
         self.session_inference_times = [] 
+        
+        self.zone_priority = {"NONE": 0, "GREEN": 1, "YELLOW": 2, "RED": 3}
+        self.highest_zone = "NONE"
         
         self.db_dir = os.path.dirname(os.path.abspath(__file__))
 
@@ -93,7 +97,6 @@ class excel_logger:
         if os.path.exists(filename):
             wb = load_workbook(filename)
             ws = wb.active
-
             if ws.max_row > 1:
                 last_id = ws.cell(row = ws.max_row, column = 1).value
                 self.next_id = int(last_id) + 1
@@ -107,17 +110,6 @@ class excel_logger:
             self._apply_formatting(ws)
             wb.save(filename)
             self.next_id = 1
-
-        if os.path.exists(cache_path):
-            try:
-                with open(cache_path, 'rb') as f:
-                    cached_data = pickle.load(f)
-                if cached_data['buffer']:
-                    last_cached_id = cached_data['buffer'][-1][0]
-                    if last_cached_id >= self.next_id:
-                        self.next_id = last_cached_id + 1
-            except:
-                pass
 
     def add_to_buffer(self, row):
         self.buffer.append(row)
@@ -144,27 +136,21 @@ class excel_logger:
                 base_dir = os.path.dirname(filename)
                 folder_name, _ = os.path.splitext(os.path.basename(filename))
                 target_folder = os.path.join(base_dir, folder_name)
-                
                 os.makedirs(target_folder, exist_ok=True)
                 
                 for det_id, (frame, safe_timestamp) in self.image_buffer.items():
                     img_filename = f"{det_id} {safe_timestamp}.jpg"
                     img_path = os.path.join(target_folder, img_filename)
                     cv2.imwrite(img_path, frame)
-                    
-                print(f"Pomyślnie zapisano {len(self.image_buffer)} zdjęć w folderze: {target_folder}")
 
             self.buffer.clear()
             self.image_buffer.clear()
 
         except PermissionError:
             print(f"\n[ALERT] Zapis zablokowany. Plik {os.path.basename(filename)} jest otwarty w innym programie!")
-            print(f"[ZABEZPIECZENIE] Dane zostały przeniesione do pliku cache. Zostaną scalone przy kolejnym uruchomieniu.\n")
-            
             try:
                 existing_buffer = []
                 existing_images = {}
-                
                 if os.path.exists(cache_path):
                     with open(cache_path, 'rb') as f:
                         old_cache = pickle.load(f)
@@ -173,12 +159,10 @@ class excel_logger:
                 
                 combined_buffer = existing_buffer + self.buffer
                 existing_images.update(self.image_buffer)
-                
                 with open(cache_path, 'wb') as f:
                     pickle.dump({'buffer': combined_buffer, 'image_buffer': existing_images}, f)
-                    
             except Exception as e:
-                print(f"[Cache][ERROR] Błąd zapisu awaryjnego do pliku cache: {e}")
+                pass
         
     def _apply_formatting(self, ws):
         font_naglowek = Font(name="Calibri", size=11, bold=True)
@@ -201,12 +185,13 @@ class excel_logger:
                     max_len = max(max_len, len(str(cell.value)))
             ws.column_dimensions[col_letter].width = max(max_len + 4, 12)
     
-    def acquisition(self, detection_bool, camera_id, current_acc, model_name, hardware_setup, current_fps, current_inf_time, robot_x, robot_y, robot_z, frame=None):
+    def acquisition(self, detection_bool, camera_id, current_acc, model_name, hardware_setup, current_fps, current_inf_time, robot_x, robot_y, robot_z, active_zone_name="NONE", frame=None):
 
         if detection_bool and not self.is_active:
             self.is_active = True
             self.start_timestamp_str = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
             self.start_time = time.time()
+            self.highest_zone = active_zone_name
             if frame is not None:
                 self.detection_frame = frame.copy() 
             self.session_accuracies.append(current_acc)
@@ -214,6 +199,11 @@ class excel_logger:
             self.session_inference_times.append(current_inf_time)
 
         elif detection_bool and self.is_active:
+            if self.zone_priority.get(active_zone_name, 0) > self.zone_priority.get(self.highest_zone, 0):
+                self.highest_zone = active_zone_name
+                if frame is not None:
+                    self.detection_frame = frame.copy() 
+            
             self.session_accuracies.append(current_acc)
             self.session_fps.append(current_fps)
             self.session_inference_times.append(current_inf_time)
@@ -239,6 +229,7 @@ class excel_logger:
                 self.next_id,
                 camera_id,
                 status,
+                self.highest_zone,
                 model_name,
                 hardware_setup,
                 self.start_timestamp_str,
@@ -256,6 +247,7 @@ class excel_logger:
             self.next_id += 1
             
             self.is_active = False
+            self.highest_zone = "NONE"
             self.detection_frame = None 
             self.session_accuracies.clear()
             self.session_fps.clear()
