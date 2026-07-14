@@ -24,8 +24,10 @@ SPEED_GREEN = 0.50
 SPEED_YELLOW = 0.25 
 SPEED_RED = 0.10     
 
-MIN_DETECTION_TIME_S = 0.5 
+MIN_DETECTION_TIME_S = 1
 URUCHOM_KONFIGURATOR_STREF = True  
+HYSTERESIS_TIME_S = 0.8  # Czas podtrzymania redukcji prędkości po zaniku detekcji (zapobiega drganiom/szarpaniu)
+DETECTION_POINT_MODE = "bbox"  # "feet" (środek dolnej krawędzi boxa) lub "bbox" (cały bbox)
 
 DB_HOST = os.getenv("DB_HOST", "local")
 DB_USER = os.getenv("DB_USER", "root")
