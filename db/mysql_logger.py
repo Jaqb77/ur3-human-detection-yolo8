@@ -8,8 +8,12 @@ import mysql.connector
 import config
 
 class mysql_logger:
-    
+    """
+    MySQL database logger class that performs asynchronous logs inserting
+    using a background worker thread. Includes auto-reconnection and a local cache fallback.
+    """
     def __init__(self):
+        # FIFO queue for asynchronous inserts
         self.log_queue = queue.Queue()
         
         self.is_active = False          
@@ -30,7 +34,7 @@ class mysql_logger:
         self.db_dir = os.path.dirname(os.path.abspath(__file__))
         self.cache_path = os.path.join(self.db_dir, "mysql_logger.cache")
         
-        # Wątek tła do asynchronicznego zapisu do MySQL
+        # Start background worker thread for asynchronous database inserts
         self.worker_thread = threading.Thread(target=self._async_db_writer, daemon=True)
         self.worker_running = True
         self.worker_thread.start()
@@ -40,6 +44,7 @@ class mysql_logger:
         Nawiązuje połączenie z bazą danych MySQL.
         """
         try:
+            # Ensure the database exists
             temp_conn = mysql.connector.connect(
                 host=config.DB_HOST,
                 user=config.DB_USER,
@@ -51,6 +56,7 @@ class mysql_logger:
             temp_cursor.close()
             temp_conn.close()
 
+            # Connect to the target database schema
             self.db_conn = mysql.connector.connect(
                 host=config.DB_HOST,
                 user=config.DB_USER,
@@ -60,7 +66,7 @@ class mysql_logger:
             )
             self.cursor = self.db_conn.cursor()
             
-            # Tworzenie tabeli jeśli nie istnieje (ze wsparciem dla ręcznie wstawianego id_detection)
+            # Create schema table if it does not exist (supporting manual id_detection insert)
             create_table_query = """
             CREATE TABLE IF NOT EXISTS detections_v2 (
                 id_detection INT PRIMARY KEY,
@@ -82,13 +88,14 @@ class mysql_logger:
             """
             self.cursor.execute(create_table_query)
             
-            # Usunięcie AUTO_INCREMENT z istniejącej tabeli, jeśli została utworzona we wcześniejszej wersji skryptu
+            # Remove AUTO_INCREMENT from existing tables if migrating from older versions
             try:
                 self.cursor.execute("ALTER TABLE detections_v2 MODIFY id_detection INT;")
             except Exception:
                 pass
                 
             self.db_conn.commit()
+            print("[MySQL] Połączenie stabilne. Tabela 'detections_v2' gotowa.")
             return True
         except Exception as e:
             print(f"[MySQL][ERROR] Błąd połączenia z bazą: {e}")
@@ -97,12 +104,12 @@ class mysql_logger:
             return False
 
     def init_check(self):
-        # Inicjalizacja połączenia w wątku tła
+        # Queue connection initialization in background thread
         self.log_queue.put({"type": "init"})
 
     def acquisition(self, detection_bool, camera_id, current_acc, model_name, hardware_setup, current_fps, current_inf_time, robot_x, robot_y, robot_z, active_zone_name="NONE", det_id=1):
         """
-        Zarządzanie stanem sesji detekcji.
+        Manages the detection session status and queues the insert command when the session ends.
         """
         if detection_bool and not self.is_active:
             self.is_active = True
@@ -135,7 +142,6 @@ class mysql_logger:
             else:
                 status = "detection"
 
-            # Wartości zawierają zsynchronizowany id_detection (det_id) jako pierwszy element
             values = (
                 det_id, camera_id, status, self.highest_zone, model_name, hardware_setup,
                 self.start_timestamp_str, end_timestamp_str, round(duration_s, 2),
@@ -143,7 +149,7 @@ class mysql_logger:
                 robot_x, robot_y, robot_z
             )
 
-            # Wrzucenie rekordu do zapisu asynchronicznego
+            # Queue insert task
             self.log_queue.put({
                 "type": "insert",
                 "values": values
@@ -157,7 +163,7 @@ class mysql_logger:
 
     def _save_to_local_cache(self, values):
         """
-        Zapisuje rekordy do pliku cache, jeśli baza danych MySQL jest niedostępna.
+        Saves the record to a local cache file if MySQL is temporarily offline.
         """
         cached_records = []
         if os.path.exists(self.cache_path):
@@ -178,7 +184,7 @@ class mysql_logger:
 
     def _process_cached_records(self):
         """
-        Próbuje wstawić zaległe rekordy z cache do bazy MySQL po odzyskaniu połączenia.
+        Processes and inserts pending cached records into MySQL upon recovery.
         """
         if not os.path.exists(self.cache_path):
             return
@@ -198,19 +204,10 @@ class mysql_logger:
         
         for record in cached_records:
             try:
-                sql_query = """
-                INSERT INTO detections_v2 (
-                    id_detection, id_camera, status, violated_zone, ai_model, hardware_setup, 
-                    detection_start_time, detection_end_time, duration_s, 
-                    average_fps, average_model_accuracy, average_inference_time_ms, 
-                    tcp_x, tcp_y, tcp_z
-                ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
-                """
-                # Sprawdzenie czy rekord już istnieje (zabezpieczenie przed kluczem głównym)
+                # Deduplicate check (prevent primary key constraint errors)
                 check_query = "SELECT 1 FROM detections_v2 WHERE id_detection = %s"
                 self.cursor.execute(check_query, (record[0],))
                 if self.cursor.fetchone():
-                    # Rekord już istnieje, ignorujemy
                     continue
 
                 sql_insert = """
@@ -225,7 +222,6 @@ class mysql_logger:
                 self.db_conn.commit()
                 print(f"[MySQL][CACHE] Pomyślnie zsynchronizowano zaległy rekord ID: {record[0]}")
             except Exception as e:
-                # Jeśli się nie uda, zachowujemy w cache
                 remaining_records.append(record)
         
         if remaining_records:
@@ -243,7 +239,7 @@ class mysql_logger:
 
     def _async_db_writer(self):
         """
-        Główna pętla wątku tła.
+        Main worker thread loop for MySQL insertions.
         """
         while self.worker_running or not self.log_queue.empty():
             try:
@@ -267,7 +263,7 @@ class mysql_logger:
                 values = item["values"]
                 success = False
                 
-                # Próba zapisu z automatycznym ponownym łączeniem (max 2 próby)
+                # Try connection/write with auto-reconnection (max 2 attempts)
                 for attempt in range(2):
                     if not self.db_conn or not self.db_conn.is_connected():
                         if self._connect_db():
@@ -294,12 +290,14 @@ class mysql_logger:
                     time.sleep(0.5)
 
                 if not success:
-                    # Zapisujemy do lokalnego cache
                     self._save_to_local_cache(values)
                 
                 self.log_queue.task_done()
 
     def close_connection(self):
+        """
+        Triggers on shutdown. Force-saves any active session and closes database resources safely.
+        """
         if self.is_active:
             print("[MySQL][ZAMYKANIE] Wykryto aktywną detekcję. Wymuszam zapis rekordu...")
             avg_acc = sum(self.session_accuracies) / len(self.session_accuracies) if self.session_accuracies else 0.0

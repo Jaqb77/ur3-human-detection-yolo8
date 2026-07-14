@@ -1,0 +1,528 @@
+
+[2026-07-14 16:44:46] =============================================
+[2026-07-14 16:44:46]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 16:44:46] =============================================
+[2026-07-14 16:44:46] 1. Wyznacz nowe strefy
+[2026-07-14 16:44:46] 2. Pokaz aktualne strefy
+[2026-07-14 16:44:46] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 16:44:46] 0. Wyjdz
+[2026-07-14 16:44:46] =============================================
+[2026-07-14 16:44:46] Wybierz opcje: 
+[2026-07-14 16:46:05] =============================================
+[2026-07-14 16:46:05]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 16:46:05] =============================================
+[2026-07-14 16:46:05] 1. Wyznacz nowe strefy
+[2026-07-14 16:46:05] 2. Pokaz aktualne strefy
+[2026-07-14 16:46:05] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 16:46:05] 0. Wyjdz
+[2026-07-14 16:46:05] =============================================
+[2026-07-14 16:46:05] Wybierz opcje: 
+[2026-07-14 16:46:08] --- KONFIGURATOR STREF BEZPIECZEŃSTWA ---
+[2026-07-14 16:46:08] 1. Narysuj ZIELONĄ strefę (lewy przycisk myszy).
+[2026-07-14 16:46:08] 2. Narysuj ŻÓŁTĄ strefę.
+[2026-07-14 16:46:08] 3. Narysuj CZERWONĄ strefę.
+[2026-07-14 16:46:08] 4. Wciśnij 's', aby zapisać strefy.
+[2026-07-14 16:46:08] 5. Wciśnij 'r', aby zresetować rysowanie.
+
+[2026-07-14 16:46:17] [INFO] Strefy zostały pomyślnie zapisane do pliku 'zones.json'.
+
+[2026-07-14 16:46:18] =============================================
+[2026-07-14 16:46:18]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 16:46:18] =============================================
+[2026-07-14 16:46:18] 1. Wyznacz nowe strefy
+[2026-07-14 16:46:18] 2. Pokaz aktualne strefy
+[2026-07-14 16:46:18] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 16:46:18] 0. Wyjdz
+[2026-07-14 16:46:18] =============================================
+[2026-07-14 16:46:18] Wybierz opcje: 
+[2026-07-14 16:46:19] --- KONFIGURATOR STREF BEZPIECZEŃSTWA ---
+[2026-07-14 16:46:19] 1. Narysuj ZIELONĄ strefę (lewy przycisk myszy).
+[2026-07-14 16:46:19] 2. Narysuj ŻÓŁTĄ strefę.
+[2026-07-14 16:46:19] 3. Narysuj CZERWONĄ strefę.
+[2026-07-14 16:46:19] 4. Wciśnij 's', aby zapisać strefy.
+[2026-07-14 16:46:19] 5. Wciśnij 'r', aby zresetować rysowanie.
+
+[2026-07-14 16:46:22] [INFO] Strefy zostały pomyślnie zapisane do pliku 'zones.json'.
+
+[2026-07-14 16:46:22] =============================================
+[2026-07-14 16:46:22]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 16:46:22] =============================================
+[2026-07-14 16:46:22] 1. Wyznacz nowe strefy
+[2026-07-14 16:46:22] 2. Pokaz aktualne strefy
+[2026-07-14 16:46:22] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 16:46:22] 0. Wyjdz
+[2026-07-14 16:46:22] =============================================
+[2026-07-14 16:46:22] Wybierz opcje: 
+[2026-07-14 16:46:24] --- KONFIGURATOR STREF BEZPIECZEŃSTWA ---
+[2026-07-14 16:46:24] 1. Narysuj ZIELONĄ strefę (lewy przycisk myszy).
+[2026-07-14 16:46:24] 2. Narysuj ŻÓŁTĄ strefę.
+[2026-07-14 16:46:24] 3. Narysuj CZERWONĄ strefę.
+[2026-07-14 16:46:24] 4. Wciśnij 's', aby zapisać strefy.
+[2026-07-14 16:46:24] 5. Wciśnij 'r', aby zresetować rysowanie.
+
+[2026-07-14 16:46:25] [INFO] Strefy zostały pomyślnie zapisane do pliku 'zones.json'.
+
+[2026-07-14 16:46:25] =============================================
+[2026-07-14 16:46:25]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 16:46:25] =============================================
+[2026-07-14 16:46:25] 1. Wyznacz nowe strefy
+[2026-07-14 16:46:25] 2. Pokaz aktualne strefy
+[2026-07-14 16:46:25] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 16:46:25] 0. Wyjdz
+[2026-07-14 16:46:25] =============================================
+[2026-07-14 16:46:25] Wybierz opcje: 
+[2026-07-14 16:46:26] [INFO] Uruchomiono podgląd stref. Wciśnij 'q', aby zamknąć okno i wrócić do menu.
+
+[2026-07-14 16:46:28] =============================================
+[2026-07-14 16:46:28]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 16:46:28] =============================================
+[2026-07-14 16:46:28] 1. Wyznacz nowe strefy
+[2026-07-14 16:46:28] 2. Pokaz aktualne strefy
+[2026-07-14 16:46:28] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 16:46:28] 0. Wyjdz
+[2026-07-14 16:46:28] =============================================
+[2026-07-14 16:46:28] Wybierz opcje: 
+[2026-07-14 16:46:29] --- KONFIGURATOR STREF BEZPIECZEŃSTWA ---
+[2026-07-14 16:46:29] 1. Narysuj ZIELONĄ strefę (lewy przycisk myszy).
+[2026-07-14 16:46:29] 2. Narysuj ŻÓŁTĄ strefę.
+[2026-07-14 16:46:29] 3. Narysuj CZERWONĄ strefę.
+[2026-07-14 16:46:29] 4. Wciśnij 's', aby zapisać strefy.
+[2026-07-14 16:46:29] 5. Wciśnij 'r', aby zresetować rysowanie.
+
+[2026-07-14 16:46:45] [INFO] Zresetowano obszary.
+[2026-07-14 16:46:51] [INFO] Strefy zostały pomyślnie zapisane do pliku 'zones.json'.
+
+[2026-07-14 16:46:52] =============================================
+[2026-07-14 16:46:52]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 16:46:52] =============================================
+[2026-07-14 16:46:52] 1. Wyznacz nowe strefy
+[2026-07-14 16:46:52] 2. Pokaz aktualne strefy
+[2026-07-14 16:46:52] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 16:46:52] 0. Wyjdz
+[2026-07-14 16:46:52] =============================================
+[2026-07-14 16:46:52] Wybierz opcje: 
+[2026-07-14 16:47:04] [INFO] Pomijam menu, uruchamianie glownego systemu detekcji...
+[2026-07-14 16:47:04] Trwa ladowanie modelu YOLO do pamieci VRAM
+[2026-07-14 16:47:04] Strefy wczytane poprawnie do glownego programu.
+[2026-07-14 16:47:04] [Kamera] Inicjalizacja wątku kamery...
+[2026-07-14 16:47:05] Skrypt uruchomiony w trybie offline.
+
+[2026-07-14 16:47:05] [INFO] Główna pętla detekcji uruchomiona. Wciśnij 'q', aby wyjść.
+[2026-07-14 16:47:05] [MySQL] Połączenie stabilne. Tabela 'detections_v2' gotowa.
+[2026-07-14 16:47:07] [MySQL] Zapisano incydent w strefie GREEN. ID: 130
+[2026-07-14 16:47:09] [MySQL] Zapisano incydent w strefie GREEN. ID: 131
+[2026-07-14 16:47:09] [MySQL] Zapisano incydent w strefie GREEN. ID: 132
+[2026-07-14 16:47:09] [MySQL] Zapisano incydent w strefie GREEN. ID: 133
+[2026-07-14 16:47:10] [MySQL] Zapisano incydent w strefie GREEN. ID: 134
+[2026-07-14 16:47:13] [MySQL] Zapisano incydent w strefie RED. ID: 135
+[2026-07-14 16:47:13] [MySQL] Zapisano incydent w strefie YELLOW. ID: 136
+[2026-07-14 16:47:13] [MySQL] Zapisano incydent w strefie YELLOW. ID: 137
+[2026-07-14 16:47:14] [MySQL] Zapisano incydent w strefie YELLOW. ID: 138
+[2026-07-14 16:47:14] [MySQL] Zapisano incydent w strefie YELLOW. ID: 139
+[2026-07-14 16:47:16] [MySQL] Zapisano incydent w strefie RED. ID: 140
+[2026-07-14 16:47:20] [MySQL] Zapisano incydent w strefie GREEN. ID: 141
+[2026-07-14 16:47:24] [MySQL] Zapisano incydent w strefie YELLOW. ID: 142
+[2026-07-14 16:47:26] [MySQL] Zapisano incydent w strefie RED. ID: 143
+[2026-07-14 16:47:26] [MySQL] Zapisano incydent w strefie GREEN. ID: 144
+[2026-07-14 16:47:27] [MySQL] Zapisano incydent w strefie GREEN. ID: 145
+[2026-07-14 16:47:27] [MySQL] Zapisano incydent w strefie GREEN. ID: 146
+
+[2026-07-14 16:47:32] [ZAMYKANIE] Rozpoczęto bezpieczne zamykanie systemu...
+[2026-07-14 16:47:32] [ZAMYKANIE][Kamera] Zwolniono zasoby wideo.
+[2026-07-14 16:47:32] [MySQL] Zamykanie połączenia asynchronicznego...
+[2026-07-14 16:47:32] [MySQL] Połączenie zamknięte bezpiecznie.
+[2026-07-14 16:47:32] [ZAMYKANIE] Zakończono zwalnianie zasobów.
+
+[2026-07-14 16:50:48] =============================================
+[2026-07-14 16:50:48]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 16:50:48] =============================================
+[2026-07-14 16:50:48] 1. Wyznacz nowe strefy
+[2026-07-14 16:50:48] 2. Pokaz aktualne strefy
+[2026-07-14 16:50:48] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 16:50:48] 0. Wyjdz
+[2026-07-14 16:50:48] =============================================
+[2026-07-14 16:50:48] Wybierz opcje: 
+[2026-07-14 17:02:24] =============================================
+[2026-07-14 17:02:24]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 17:02:24] =============================================
+[2026-07-14 17:02:24] 1. Wyznacz nowe strefy
+[2026-07-14 17:02:24] 2. Pokaz aktualne strefy
+[2026-07-14 17:02:24] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 17:02:24] 0. Wyjdz
+[2026-07-14 17:02:24] =============================================
+[2026-07-14 17:02:24] Wybierz opcje: 
+[2026-07-14 17:02:26] [INFO] Pomijam menu, uruchamianie glownego systemu detekcji...
+[2026-07-14 17:02:26] Trwa ladowanie modelu YOLO do pamieci VRAM
+[2026-07-14 17:02:27] Strefy wczytane poprawnie do glownego programu.
+[2026-07-14 17:02:27] [Kamera] Inicjalizacja wątku kamery...
+[2026-07-14 17:02:27] Skrypt uruchomiony w trybie offline.
+
+[2026-07-14 17:02:27] [INFO] Główna pętla detekcji uruchomiona. Wciśnij 'q', aby wyjść.
+[2026-07-14 17:02:27] [MySQL] Połączenie stabilne. Tabela 'detections_v2' gotowa.
+[2026-07-14 17:02:29] [MySQL] Zapisano incydent w strefie GREEN. ID: 147
+[2026-07-14 17:02:37] [MySQL] Zapisano incydent w strefie GREEN. ID: 148
+[2026-07-14 17:02:49] [MySQL] Zapisano incydent w strefie YELLOW. ID: 149
+[2026-07-14 17:02:58] [MySQL] Zapisano incydent w strefie YELLOW. ID: 150
+[2026-07-14 17:03:06] [MySQL] Zapisano incydent w strefie YELLOW. ID: 151
+[2026-07-14 17:03:14] [MySQL] Zapisano incydent w strefie GREEN. ID: 152
+[2026-07-14 17:03:17] [MySQL] Zapisano incydent w strefie GREEN. ID: 153
+[2026-07-14 17:03:23] [MySQL] Zapisano incydent w strefie GREEN. ID: 154
+[2026-07-14 17:03:27] [MySQL] Zapisano incydent w strefie GREEN. ID: 155
+[2026-07-14 17:03:32] [MySQL] Zapisano incydent w strefie YELLOW. ID: 156
+[2026-07-14 17:03:34] [MySQL] Zapisano incydent w strefie GREEN. ID: 157
+[2026-07-14 17:03:34] [MySQL] Zapisano incydent w strefie GREEN. ID: 158
+[2026-07-14 17:03:35] [MySQL] Zapisano incydent w strefie GREEN. ID: 159
+[2026-07-14 17:03:37] [MySQL] Zapisano incydent w strefie GREEN. ID: 160
+[2026-07-14 17:03:41] [MySQL] Zapisano incydent w strefie YELLOW. ID: 161
+[2026-07-14 17:03:44] [MySQL] Zapisano incydent w strefie YELLOW. ID: 162
+[2026-07-14 17:03:50] [MySQL] Zapisano incydent w strefie YELLOW. ID: 163
+[2026-07-14 17:03:58] [MySQL] Zapisano incydent w strefie GREEN. ID: 164
+[2026-07-14 17:04:03] [MySQL] Zapisano incydent w strefie GREEN. ID: 165
+[2026-07-14 17:04:06] [MySQL] Zapisano incydent w strefie GREEN. ID: 166
+
+[2026-07-14 17:04:08] [ZAMYKANIE] Rozpoczęto bezpieczne zamykanie systemu...
+[2026-07-14 17:04:09] [ZAMYKANIE][Kamera] Zwolniono zasoby wideo.
+[2026-07-14 17:04:09] [MySQL] Zamykanie połączenia asynchronicznego...
+[2026-07-14 17:04:09] [MySQL] Połączenie zamknięte bezpiecznie.
+[2026-07-14 17:04:09] [ZAMYKANIE] Zakończono zwalnianie zasobów.
+
+[2026-07-14 17:19:53] =============================================
+[2026-07-14 17:19:53]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 17:19:53] =============================================
+[2026-07-14 17:19:53] 1. Wyznacz nowe strefy
+[2026-07-14 17:19:53] 2. Pokaz aktualne strefy
+[2026-07-14 17:19:53] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 17:19:53] 0. Wyjdz
+[2026-07-14 17:19:53] =============================================
+[2026-07-14 17:19:53] Wybierz opcje: 
+[2026-07-14 17:19:57] [INFO] Pomijam menu, uruchamianie glownego systemu detekcji...
+[2026-07-14 17:19:57] Trwa ladowanie modelu YOLO do pamieci VRAM
+[2026-07-14 17:19:57] Strefy wczytane poprawnie do glownego programu.
+[2026-07-14 17:19:57] [Kamera] Inicjalizacja wątku kamery...
+[2026-07-14 17:19:57] [COBOT] Nawiazywanie polaczenia z 192.168.0.184...
+[2026-07-14 17:19:58] [COBOT] Polaczono z RTDE pomyślnie.
+
+[2026-07-14 17:19:58] [INFO] Główna pętla detekcji uruchomiona. Wciśnij 'q', aby wyjść.
+[2026-07-14 17:19:58] [MySQL] Połączenie stabilne. Tabela 'detections_v2' gotowa.
+[2026-07-14 17:20:02] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:06] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:20:06] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:06] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:20:07] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:07] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:20:10] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:11] [MySQL] Zapisano incydent w strefie RED. ID: 167
+[2026-07-14 17:20:12] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:20:13] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:16] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:17] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:20:19] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:20] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:20] [MySQL] Zapisano incydent w strefie RED. ID: 168
+[2026-07-14 17:20:21] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:20:23] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:23] [MySQL] Zapisano incydent w strefie GREEN. ID: 169
+[2026-07-14 17:20:23] [MySQL] Zapisano incydent w strefie GREEN. ID: 170
+[2026-07-14 17:20:23] [MySQL] Zapisano incydent w strefie GREEN. ID: 171
+[2026-07-14 17:20:24] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:20:25] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:26] [MySQL] Zapisano incydent w strefie GREEN. ID: 172
+[2026-07-14 17:20:27] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:20:27] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:27] [MySQL] Zapisano incydent w strefie GREEN. ID: 173
+[2026-07-14 17:20:28] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:20:35] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:35] [MySQL] Zapisano incydent w strefie GREEN. ID: 174
+[2026-07-14 17:20:36] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:20:37] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:37] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:37] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:39] [MySQL] Zapisano incydent w strefie YELLOW. ID: 175
+[2026-07-14 17:20:40] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:20:45] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:46] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:46] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:46] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:46] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:20:48] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:48] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:49] [MySQL] Zapisano incydent w strefie RED. ID: 176
+[2026-07-14 17:20:49] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:20:55] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:56] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:20:57] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:20:58] [MySQL] Zapisano incydent w strefie YELLOW. ID: 177
+[2026-07-14 17:20:59] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:21:05] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:21:08] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:21:08] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:21:09] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:21:09] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:21:10] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:21:10] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:21:10] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:21:10] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:21:10] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:21:10] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:21:10] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:21:10] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:21:10] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:21:11] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:21:11] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+
+[2026-07-14 17:21:13] [ZAMYKANIE] Rozpoczęto bezpieczne zamykanie systemu...
+[2026-07-14 17:21:13] [ZAMYKANIE][COBOT] Przywrócono prędkość nominalną 100%.
+[2026-07-14 17:21:13] [ZAMYKANIE][Kamera] Zwolniono zasoby wideo.
+[2026-07-14 17:21:13] [Excel][ZAMYKANIE] Wykryto aktywną detekcję. Wymuszam zapis wiersza...
+[2026-07-14 17:21:13] [MySQL][ZAMYKANIE] Wykryto aktywną detekcję. Wymuszam zapis rekordu...
+[2026-07-14 17:21:13] [MySQL] Zamykanie połączenia asynchronicznego...
+[2026-07-14 17:21:13] [MySQL] Zapisano incydent w strefie RED. ID: 178
+[2026-07-14 17:21:13] [MySQL] Połączenie zamknięte bezpiecznie.
+[2026-07-14 17:21:13] [ZAMYKANIE] Zakończono zwalnianie zasobów.
+
+[2026-07-14 17:29:27] =============================================
+[2026-07-14 17:29:27]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 17:29:27] =============================================
+[2026-07-14 17:29:27] 1. Wyznacz nowe strefy
+[2026-07-14 17:29:27] 2. Pokaz aktualne strefy
+[2026-07-14 17:29:27] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 17:29:27] 0. Wyjdz
+[2026-07-14 17:29:27] =============================================
+[2026-07-14 17:29:27] Wybierz opcje: 
+[2026-07-14 17:30:15] =============================================
+[2026-07-14 17:30:15]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 17:30:15] =============================================
+[2026-07-14 17:30:15] 1. Wyznacz nowe strefy
+[2026-07-14 17:30:15] 2. Pokaz aktualne strefy
+[2026-07-14 17:30:15] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 17:30:15] 0. Wyjdz
+[2026-07-14 17:30:15] =============================================
+[2026-07-14 17:30:15] Wybierz opcje: 
+[2026-07-14 17:30:23] [INFO] Pomijam menu, uruchamianie glownego systemu detekcji...
+[2026-07-14 17:30:23] Trwa ladowanie modelu YOLO do pamieci VRAM
+[2026-07-14 17:30:24] Strefy wczytane poprawnie do glownego programu.
+[2026-07-14 17:30:24] [Kamera] Inicjalizacja wątku kamery...
+[2026-07-14 17:30:24] Skrypt uruchomiony w trybie offline.
+
+[2026-07-14 17:30:24] [INFO] Główna pętla detekcji uruchomiona. Wciśnij 'q', aby wyjść.
+[2026-07-14 17:30:25] [MySQL] Połączenie stabilne. Tabela 'detections_v2' gotowa.
+
+[2026-07-14 17:30:27] [PROFILER] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:30:27]   - Detekcja YOLOv8:       10.94 ms
+[2026-07-14 17:30:27]   - Logika strefowa (CPU):  0.25 ms
+[2026-07-14 17:30:27]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:30:27]   - Łączny czas latencji:   11.19 ms
+[2026-07-14 17:30:27] [MySQL] Zapisano incydent w strefie GREEN. ID: 179
+
+[2026-07-14 17:30:30] [PROFILER] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:30:30]   - Detekcja YOLOv8:       9.98 ms
+[2026-07-14 17:30:30]   - Logika strefowa (CPU):  0.26 ms
+[2026-07-14 17:30:30]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:30:30]   - Łączny czas latencji:   10.24 ms
+[2026-07-14 17:30:30] [MySQL] Zapisano incydent w strefie GREEN. ID: 180
+
+[2026-07-14 17:30:33] [PROFILER] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:30:33]   - Detekcja YOLOv8:       8.41 ms
+[2026-07-14 17:30:33]   - Logika strefowa (CPU):  0.23 ms
+[2026-07-14 17:30:33]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:30:33]   - Łączny czas latencji:   8.64 ms
+[2026-07-14 17:30:33] [MySQL] Zapisano incydent w strefie YELLOW. ID: 181
+
+[2026-07-14 17:30:33] [PROFILER] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:30:33]   - Detekcja YOLOv8:       8.95 ms
+[2026-07-14 17:30:33]   - Logika strefowa (CPU):  0.28 ms
+[2026-07-14 17:30:33]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:30:33]   - Łączny czas latencji:   9.23 ms
+[2026-07-14 17:30:33] [MySQL] Zapisano incydent w strefie YELLOW. ID: 182
+
+[2026-07-14 17:30:40] [PROFILER] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:30:40]   - Detekcja YOLOv8:       10.01 ms
+[2026-07-14 17:30:40]   - Logika strefowa (CPU):  0.25 ms
+[2026-07-14 17:30:40]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:30:40]   - Łączny czas latencji:   10.26 ms
+[2026-07-14 17:30:40] [MySQL] Zapisano incydent w strefie YELLOW. ID: 183
+
+[2026-07-14 17:30:44] [PROFILER] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:30:44]   - Detekcja YOLOv8:       8.39 ms
+[2026-07-14 17:30:44]   - Logika strefowa (CPU):  0.23 ms
+[2026-07-14 17:30:44]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:30:44]   - Łączny czas latencji:   8.61 ms
+[2026-07-14 17:30:44] [MySQL] Zapisano incydent w strefie GREEN. ID: 184
+
+[2026-07-14 17:30:48] [ZAMYKANIE] Rozpoczęto bezpieczne zamykanie systemu...
+[2026-07-14 17:30:48] [ZAMYKANIE][Kamera] Zwolniono zasoby wideo.
+[2026-07-14 17:30:48] [MySQL] Zamykanie połączenia asynchronicznego...
+[2026-07-14 17:30:48] [MySQL] Połączenie zamknięte bezpiecznie.
+[2026-07-14 17:30:48] [ZAMYKANIE] Zakończono zwalnianie zasobów.
+
+[2026-07-14 17:33:40] =============================================
+[2026-07-14 17:33:40]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 17:33:40] =============================================
+[2026-07-14 17:33:40] 1. Wyznacz nowe strefy
+[2026-07-14 17:33:40] 2. Pokaz aktualne strefy
+[2026-07-14 17:33:40] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 17:33:40] 0. Wyjdz
+[2026-07-14 17:33:40] =============================================
+[2026-07-14 17:33:40] Wybierz opcje: 
+[2026-07-14 17:33:45] [INFO] Pomijam menu, uruchamianie glownego systemu detekcji...
+[2026-07-14 17:33:45] Trwa ladowanie modelu YOLO do pamieci VRAM
+[2026-07-14 17:33:45] Strefy wczytane poprawnie do glownego programu.
+[2026-07-14 17:33:45] [Kamera] Inicjalizacja wątku kamery...
+[2026-07-14 17:33:46] [COBOT] Nawiazywanie polaczenia z 192.168.0.184...
+[2026-07-14 17:33:46] [COBOT] Polaczono z RTDE pomyślnie.
+
+[2026-07-14 17:33:46] [INFO] Główna pętla detekcji uruchomiona. Wciśnij 'q', aby wyjść.
+[2026-07-14 17:33:47] [MySQL] Połączenie stabilne. Tabela 'detections_v2' gotowa.
+[2026-07-14 17:34:08] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+
+[2026-07-14 17:34:09] [LOG] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:34:09]   - Detekcja modelu:       11.21 ms
+[2026-07-14 17:34:09]   - Logika (CPU):  0.29 ms
+[2026-07-14 17:34:09]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:34:09]   - Łączny czas opoznienia:   11.5 ms
+[2026-07-14 17:34:09] [MySQL] Zapisano incydent w strefie YELLOW. ID: 185
+[2026-07-14 17:34:10] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+
+[2026-07-14 17:34:54] [ZAMYKANIE] Rozpoczęto bezpieczne zamykanie systemu...
+[2026-07-14 17:34:54] [ZAMYKANIE][COBOT] Przywrócono prędkość nominalną 100%.
+[2026-07-14 17:34:54] [ZAMYKANIE][Kamera] Zwolniono zasoby wideo.
+[2026-07-14 17:34:54] [MySQL] Zamykanie połączenia asynchronicznego...
+[2026-07-14 17:34:54] [MySQL] Połączenie zamknięte bezpiecznie.
+[2026-07-14 17:34:54] [ZAMYKANIE] Zakończono zwalnianie zasobów.
+
+[2026-07-14 17:45:58] =============================================
+[2026-07-14 17:45:58]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 17:45:58] =============================================
+[2026-07-14 17:45:58] 1. Wyznacz nowe strefy
+[2026-07-14 17:45:58] 2. Pokaz aktualne strefy
+[2026-07-14 17:45:58] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 17:45:58] 0. Wyjdz
+[2026-07-14 17:45:58] =============================================
+[2026-07-14 17:45:58] Wybierz opcje: 
+[2026-07-14 17:46:10] [INFO] Pomijam menu, uruchamianie glownego systemu detekcji...
+[2026-07-14 17:46:10] Trwa ladowanie modelu YOLO do pamieci VRAM
+[2026-07-14 17:46:10] Strefy wczytane poprawnie do glownego programu.
+[2026-07-14 17:46:10] [Kamera] Inicjalizacja wątku kamery...
+[2026-07-14 17:46:11] [COBOT] Nawiazywanie polaczenia z 192.168.0.184...
+[2026-07-14 17:46:12] [COBOT] Polaczono z RTDE pomyślnie.
+
+[2026-07-14 17:46:12] [INFO] Główna pętla detekcji uruchomiona. Wciśnij 'q', aby wyjść.
+[2026-07-14 17:46:12] [MySQL] Połączenie stabilne. Tabela 'detections_v2' gotowa.
+[2026-07-14 17:46:16] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+
+[2026-07-14 17:46:19] [LOG] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:46:19]   - Detekcja modelu:       13.78 ms
+[2026-07-14 17:46:19]   - Logika (CPU):  0.35 ms
+[2026-07-14 17:46:19]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:46:19]   - Łączny czas opoznienia:   14.13 ms
+[2026-07-14 17:46:19] [MySQL] Zapisano incydent w strefie GREEN. ID: 186
+[2026-07-14 17:46:19] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:46:22] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+
+[2026-07-14 17:46:24] [LOG] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:46:24]   - Detekcja modelu:       11.38 ms
+[2026-07-14 17:46:24]   - Logika (CPU):  0.35 ms
+[2026-07-14 17:46:24]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:46:24]   - Łączny czas opoznienia:   11.73 ms
+[2026-07-14 17:46:24] [MySQL] Zapisano incydent w strefie YELLOW. ID: 187
+[2026-07-14 17:46:25] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:46:28] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:46:28] [COBOT] Prędkość zmieniona na: 10% (Strefa: RED)
+[2026-07-14 17:46:30] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+
+[2026-07-14 17:46:30] [LOG] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:46:30]   - Detekcja modelu:       10.91 ms
+[2026-07-14 17:46:30]   - Logika (CPU):  0.27 ms
+[2026-07-14 17:46:30]   - Transmisja RTDE (LAN):  0.06 ms
+[2026-07-14 17:46:30]   - Łączny czas opoznienia:   11.24 ms
+[2026-07-14 17:46:30] [MySQL] Zapisano incydent w strefie RED. ID: 188
+[2026-07-14 17:46:31] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:46:33] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+
+[2026-07-14 17:46:35] [LOG] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:46:35]   - Detekcja modelu:       11.32 ms
+[2026-07-14 17:46:35]   - Logika (CPU):  0.36 ms
+[2026-07-14 17:46:35]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:46:35]   - Łączny czas opoznienia:   11.68 ms
+[2026-07-14 17:46:35] [MySQL] Zapisano incydent w strefie GREEN. ID: 189
+[2026-07-14 17:46:36] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:46:39] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+
+[2026-07-14 17:46:40] [LOG] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:46:40]   - Detekcja modelu:       10.5 ms
+[2026-07-14 17:46:40]   - Logika (CPU):  0.32 ms
+[2026-07-14 17:46:40]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:46:40]   - Łączny czas opoznienia:   10.82 ms
+[2026-07-14 17:46:40] [MySQL] Zapisano incydent w strefie GREEN. ID: 190
+[2026-07-14 17:46:41] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:46:42] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+
+[2026-07-14 17:46:45] [LOG] ŚREDNIE CZASY REAKCJI SYSTEMU (sesja ID zakończona):
+[2026-07-14 17:46:45]   - Detekcja modelu:       10.36 ms
+[2026-07-14 17:46:45]   - Logika (CPU):  0.31 ms
+[2026-07-14 17:46:45]   - Transmisja RTDE (LAN):  0.0 ms
+[2026-07-14 17:46:45]   - Łączny czas opoznienia:   10.67 ms
+[2026-07-14 17:46:45] [MySQL] Zapisano incydent w strefie GREEN. ID: 191
+[2026-07-14 17:46:46] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+
+[2026-07-14 17:46:48] [ZAMYKANIE] Rozpoczęto bezpieczne zamykanie systemu...
+[2026-07-14 17:46:48] [ZAMYKANIE][COBOT] Przywrócono prędkość nominalną 100%.
+[2026-07-14 17:46:48] [ZAMYKANIE][Kamera] Zwolniono zasoby wideo.
+[2026-07-14 17:46:48] [MySQL] Zamykanie połączenia asynchronicznego...
+[2026-07-14 17:46:48] [MySQL] Połączenie zamknięte bezpiecznie.
+[2026-07-14 17:46:48] [ZAMYKANIE] Zakończono zwalnianie zasobów.
+
+[2026-07-14 17:47:06] =============================================
+[2026-07-14 17:47:06]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 17:47:06] =============================================
+[2026-07-14 17:47:06] 1. Wyznacz nowe strefy
+[2026-07-14 17:47:06] 2. Pokaz aktualne strefy
+[2026-07-14 17:47:06] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 17:47:06] 0. Wyjdz
+[2026-07-14 17:47:06] =============================================
+[2026-07-14 17:47:06] Wybierz opcje: 
+[2026-07-14 17:47:08] [INFO] Pomijam menu, uruchamianie glownego systemu detekcji...
+[2026-07-14 17:47:08] Trwa ladowanie modelu YOLO do pamieci VRAM
+[2026-07-14 17:47:08] Strefy wczytane poprawnie do glownego programu.
+[2026-07-14 17:47:08] [Kamera] Inicjalizacja wątku kamery...
+[2026-07-14 17:47:09] [COBOT] Nawiazywanie polaczenia z 192.168.0.184...
+[2026-07-14 17:47:10] [COBOT] Polaczono z RTDE pomyślnie.
+
+[2026-07-14 17:47:10] [INFO] Główna pętla detekcji uruchomiona. Wciśnij 'q', aby wyjść.
+[2026-07-14 17:47:10] [MySQL] Połączenie stabilne. Tabela 'detections_v2' gotowa.
+[2026-07-14 17:47:11] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:47:11] [MySQL] Zapisano incydent w strefie GREEN. ID: 192
+[2026-07-14 17:47:12] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:47:12] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:47:14] [MySQL] Zapisano incydent w strefie GREEN. ID: 193
+[2026-07-14 17:47:15] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:47:18] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:47:19] [MySQL] Zapisano incydent w strefie YELLOW. ID: 194
+[2026-07-14 17:47:20] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:47:21] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:47:23] [MySQL] Zapisano incydent w strefie GREEN. ID: 195
+[2026-07-14 17:47:24] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:47:26] [COBOT] Prędkość zmieniona na: 25% (Strefa: YELLOW)
+[2026-07-14 17:47:26] [MySQL] Zapisano incydent w strefie YELLOW. ID: 196
+[2026-07-14 17:47:28] [MySQL] Zapisano incydent w strefie YELLOW. ID: 197
+[2026-07-14 17:47:29] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+[2026-07-14 17:47:30] [COBOT] Prędkość zmieniona na: 50% (Strefa: GREEN)
+[2026-07-14 17:47:33] [MySQL] Zapisano incydent w strefie GREEN. ID: 198
+[2026-07-14 17:47:33] [COBOT] Prędkość zmieniona na: 100% (Strefa: NONE)
+
+[2026-07-14 17:47:34] [ZAMYKANIE] Rozpoczęto bezpieczne zamykanie systemu...
+[2026-07-14 17:47:34] [ZAMYKANIE][COBOT] Przywrócono prędkość nominalną 100%.
+[2026-07-14 17:47:35] [ZAMYKANIE][Kamera] Zwolniono zasoby wideo.
+[2026-07-14 17:47:35] [MySQL] Zamykanie połączenia asynchronicznego...
+[2026-07-14 17:47:35] [MySQL] Połączenie zamknięte bezpiecznie.
+[2026-07-14 17:47:35] [ZAMYKANIE] Zakończono zwalnianie zasobów.
+
+[2026-07-14 17:49:16] =============================================
+[2026-07-14 17:49:16]        SYSTEM WIZYJNY BEZPIECZEŃSTWA UR3
+[2026-07-14 17:49:16] =============================================
+[2026-07-14 17:49:16] 1. Wyznacz nowe strefy
+[2026-07-14 17:49:16] 2. Pokaz aktualne strefy
+[2026-07-14 17:49:16] 3. Uruchom glowny skrypt detekcji
+[2026-07-14 17:49:16] 0. Wyjdz
+[2026-07-14 17:49:16] =============================================
+[2026-07-14 17:49:16] Wybierz opcje: 

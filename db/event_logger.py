@@ -12,7 +12,10 @@ import pickle
 import config
 
 class excel_logger:
-    
+    """
+    Excel logger class that buffers events and writes them asynchronously
+    using a background worker thread. Includes a local cache fallback.
+    """
     def __init__(self):
         self.headers = [
             "id_detection",
@@ -32,7 +35,7 @@ class excel_logger:
             "tcp_z"
         ]
 
-        # Bufor w pamięci głównej oraz kolejka asynchroniczna do zapisu w wątku roboczym
+        # Memory buffer and queue for background asynchronous thread processing
         self.log_queue = queue.Queue()
         self.is_active = False          
         self.start_time = 0.0           
@@ -51,7 +54,7 @@ class excel_logger:
         self.db_dir = os.path.dirname(os.path.abspath(__file__))
         self.log_file_path = ""
         
-        # Uruchomienie wątku roboczego do asynchronicznego zapisu plików Excel i obrazów
+        # Start background worker thread for asynchronous Excel and image writing
         self.worker_thread = threading.Thread(target=self._async_writer, daemon=True)
         self.worker_running = True
         self.worker_thread.start()
@@ -62,10 +65,14 @@ class excel_logger:
         return filename
 
     def init_check(self, filename):
+        """
+        Performs initial file checks, recovers logs from local pickle cache if found,
+        and sets up the starting detection ID.
+        """
         self.log_file_path = self._get_absolute_path(filename)
         cache_path = self.log_file_path + ".cache"
         
-        # 1. Odzyskiwanie z pliku cache, jeśli istnieje
+        # 1. Recover data from cache if it exists
         if os.path.exists(cache_path):
             try:
                 with open(cache_path, 'rb') as f:
@@ -87,7 +94,7 @@ class excel_logger:
                 self._apply_formatting(ws)
                 wb.save(self.log_file_path)
                 
-                # Odzyskiwanie zapisanych klatek
+                # Recover images
                 image_buf = cached_data.get('image_buffer', {})
                 if image_buf:
                     base_dir = os.path.dirname(self.log_file_path)
@@ -106,7 +113,7 @@ class excel_logger:
             except Exception as e:
                 print(f"[Excel][ERROR] Nie udało się odzyskać danych z cache: {e}")
 
-        # 2. Ustalenie kolejnego ID na podstawie pliku Excel
+        # 2. Determine the starting ID based on Excel contents
         if os.path.exists(self.log_file_path):
             try:
                 wb = load_workbook(self.log_file_path)
@@ -133,7 +140,8 @@ class excel_logger:
 
     def acquisition(self, detection_bool, camera_id, current_acc, model_name, hardware_setup, current_fps, current_inf_time, robot_x, robot_y, robot_z, active_zone_name="NONE", frame=None, det_id=1):
         """
-        Główna metoda zbierania danych wywoływana w każdej klatce.
+        Processes frame data, updates the current session, and queues tasks when violations start/end.
+        All I/O operations are offloaded asynchronously.
         """
         if detection_bool and not self.is_active:
             self.is_active = True
@@ -143,7 +151,7 @@ class excel_logger:
             self.highest_zone = active_zone_name
             if frame is not None:
                 self.detection_frame = frame.copy() 
-                # Natychmiast wysyłamy pierwsze zdjęcie do zapisu w czasie rzeczywistym
+                # Save initial screenshot immediately
                 safe_timestamp = self.start_timestamp_str.replace(":", "-")
                 self.log_queue.put({
                     "type": "save_image",
@@ -156,12 +164,12 @@ class excel_logger:
             self.session_inference_times.append(current_inf_time)
 
         elif detection_bool and self.is_active:
-            # Jeśli naruszono strefę o wyższym priorytecie, aktualizujemy zdjęcie na to z najgłębszego wejścia
+            # Update screenshot and highest zone if threat level increased
             if self.zone_priority.get(active_zone_name, 0) > self.zone_priority.get(self.highest_zone, 0):
                 self.highest_zone = active_zone_name
                 if frame is not None:
                     self.detection_frame = frame.copy() 
-                    # Natychmiast aktualizujemy/zapisujemy klatkę o wyższym priorytecie
+                    # Overwrite/update the image file with the higher threat level frame
                     safe_timestamp = self.start_timestamp_str.replace(":", "-")
                     self.log_queue.put({
                         "type": "save_image",
@@ -207,7 +215,7 @@ class excel_logger:
                 robot_z
             ]
             
-            # Przekazujemy wiersz do zapisu w Excelu (zdjęcie zostało już wysłane wcześniej)
+            # Queue Excel row writing (image has already been queued)
             self.log_queue.put({
                 "type": "log",
                 "row": row,
@@ -225,6 +233,9 @@ class excel_logger:
             self.session_inference_times.clear()
 
     def _apply_formatting(self, ws):
+        """
+        Applies standard styles and formats column widths in the openpyxl worksheet.
+        """
         font_naglowek = Font(name="Calibri", size=11, bold=True)
         wyrownanie_srodek = Alignment(horizontal="center", vertical="center")
 
@@ -247,7 +258,7 @@ class excel_logger:
 
     def _async_writer(self):
         """
-        Metoda wątku tła.
+        Main worker thread loop. Processes logging requests from queue sequentially.
         """
         while self.worker_running or not self.log_queue.empty():
             try:
@@ -259,7 +270,7 @@ class excel_logger:
                 self.log_queue.task_done()
                 break
 
-            # Zapytanie o natychmiastowy zapis obrazu (momentalnie po najechaniu na najwyższą strefę)
+            # 1. Asynchronous immediate image writing
             if item["type"] == "save_image":
                 frame = item["frame"]
                 safe_timestamp = item["safe_timestamp"]
@@ -277,7 +288,7 @@ class excel_logger:
                     print(f"[Excel][ERROR] Asynchroniczny błąd zapisu obrazu w locie: {e}")
                 self.log_queue.task_done()
 
-            # Zapis rekordu do arkusza Excel
+            # 2. Asynchronous Excel row appending
             elif item["type"] == "log":
                 row = item["row"]
                 frame = item["frame"]
@@ -324,6 +335,9 @@ class excel_logger:
                 self.log_queue.task_done()
 
     def save_buffer(self, filename):
+        """
+        Triggers on shutdown. Force-saves any active session and waits for worker to finish writing.
+        """
         if self.is_active:
             print("[Excel][ZAMYKANIE] Wykryto aktywną detekcję. Wymuszam zapis wiersza...")
             avg_acc = sum(self.session_accuracies) / len(self.session_accuracies) if self.session_accuracies else 0.0
