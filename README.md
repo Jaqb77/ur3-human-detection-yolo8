@@ -1,6 +1,6 @@
-# System Bezpieczeństwa Wizyjnego dla Cobota UR3 (CB3)
+# System wizyjny dla Cobota UR3 CB3
 
-Niniejszy projekt to zaawansowany system bezpieczeństwa czasu rzeczywistego (Speed and Separation Monitoring) dedykowany dla robota współpracującego **Universal Robots UR3**. System integruje detekcję ludzi przy użyciu modelu **YOLOv8** ze sterowaniem prędkością robota w czasie rzeczywistym poprzez protokół Real-Time Data Exchange oraz asynchronicznym rejestrowaniem zdarzeń.
+System bezpieczeństwa czasu rzeczywistego - "Speed and Separation Monitoring" dedykowany dla robota współpracującego **Universal Robots UR3**. System integruje detekcję ludzi przy użyciu modelu **YOLOv8** ze sterowaniem prędkością robota w czasie rzeczywistym poprzez protokół Real-Time Data Exchange oraz asynchronicznym rejestrowaniem zdarzeń.
 
 ---
 ```
